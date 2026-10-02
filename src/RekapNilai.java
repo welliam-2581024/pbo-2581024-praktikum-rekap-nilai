@@ -56,5 +56,21 @@ public class RekapNilai {
             count++;
             total += nilai;
         } while(nilai != SELESAI);
+
+        System.out.println();
+
+        System.out.println("Nilai Sah   : " + count);
+        if(count > 0){
+            double rata = total / count;
+            System.out.println("Rata-Rata   : " + String.format("%.2f", rata));
+
+            String status = rata >= 60 ? "LULUS" : "TIDAK LULUS";
+            System.out.println("Status      : " + status);
+        } else {
+            System.out.println("Rata-Rata   : 0,00");
+            System.out.println("Status      : TIDAK ADA DATA");
+        }
+
+        input.close();
     }
 }
