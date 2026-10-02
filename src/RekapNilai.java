@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class RekapNilai {
-    static final int selesai = -1;
+    static final int SELESAI = -1;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -17,9 +17,44 @@ public class RekapNilai {
             System.out.print("Nilai ke-" + (count + 1) + " : ");
             nilai = input.nextInt();
 
-            if (nilai == selesai) {
+            if (nilai == SELESAI) {
                 continue;
             }
-        } while(nilai != selesai);
+
+            if (nilai < 0 || nilai > 100) {
+                System.out.println(" ditolak karena nilai harus 0-100");
+                continue;
+            }
+
+            char grade;
+
+            if (nilai>=90){
+                grade = 'A';
+            } else if (nilai>=80) {
+                grade = 'B';
+            } else if (nilai>=70) {
+                grade = 'C';
+            } else if (nilai>=60) {
+                grade = 'D';
+            } else {
+                grade = 'E';
+            }
+
+            /*Penjelasan mengapa nilai >=60 tidak di taruh paling atas, dikarenakan saat memasukkan nilai 85,
+            * nilai tersebut akan langsung di tangkap oleh kondisi tersebut,
+            * dan akan langsung menghasilkan grade D. Hal tersebut dikarenakan if-else
+            * akan berhenti di kondisi true pertama.*/
+
+            String keterangan = switch (grade) {
+                case 'A' -> "Sangat Baik";
+                case 'B' -> "Baik";
+                case 'C' -> "Cukup";
+                case 'D' -> "Kurang";
+                default -> "Tidak Lulus";
+            };
+            System.out.println("  Grade " + grade + " _ " + keterangan);
+            count++;
+            total += nilai;
+        } while(nilai != SELESAI);
     }
 }
